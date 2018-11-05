@@ -20,21 +20,21 @@
 
 # -*- mode: makefile; -*-
 
-helloflow_CFLAGS := $(fdbclient_CFLAGS)
-helloflow_LDFLAGS := $(fdbrpc_LDFLAGS)
-helloflow_LIBS := lib/libfdbclient.a lib/libfdbrpc.a lib/libflow.a -ldl $(FDB_TLS_LIB)
-helloflow_STATIC_LIBS := $(TLS_LIBS)
+flowcli_CFLAGS := $(fdbclient_CFLAGS)
+flowcli_LDFLAGS := $(fdbrpc_LDFLAGS)
+flowcli_LIBS := lib/libfdbclient.a lib/libfdbrpc.a lib/libflow.a -ldl $(FDB_TLS_LIB)
+flowcli_STATIC_LIBS := $(TLS_LIBS)
 
-helloflow_GENERATED_SOURCES += versions.h
+flowcli_GENERATED_SOURCES += versions.h
 
 ifeq ($(PLATFORM),linux)
-  helloflow_LDFLAGS += -static-libstdc++ -static-libgcc
-  helloflow_LIBS += -lpthread -lrt
+  flowcli_LDFLAGS += -static-libstdc++ -static-libgcc
+  flowcli_LIBS += -lpthread -lrt
 else ifeq ($(PLATFORM),osx)
-  helloflow_LDFLAGS += -lc++
+  flowcli_LDFLAGS += -lc++
 endif
 
-test_helloflow_status: helloflow
+test_flowcli_status: flowcli
 	python scripts/test_status.py
 
-bin/helloflow.debug: bin/helloflow
+bin/flowcli.debug: bin/flowcli

@@ -9,13 +9,13 @@
 
 #include "flow/SimpleOpt.h"
 
-#include "helloflow/FlowLineNoise.h"
+#include "flowcli/FlowLineNoise.h"
 
 #include <signal.h>
 
 #ifdef __unixish__
 #include <stdio.h>
-#include "helloflow/linenoise/linenoise.h"
+#include "flowcli/linenoise/linenoise.h"
 #endif
 
 #ifndef WIN32
