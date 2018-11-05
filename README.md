@@ -13,7 +13,7 @@ CPP_PROJECTS := flow fdbrpc fdbclient fdbbackup fdbserver fdbcli bindings/c bind
 CPP_PROJECTS += flowcli
 ```
 * Under foundationdb folder, run **make targets**, *helloflow* should be listed one of the targets.
-* Run **make flowcli TLS_DISABLED=true**:  *bin/flowcli* should be built and ready to run.
+* Run **make flowcli TLS_DISABLED=true**:  *bin/flowcli* should be built and ready to run, **exit** to quit from the CLI.
 
 
 **Note**:  current version still depends on fdbclient's *fdbclient/NativeAPI.h*.
