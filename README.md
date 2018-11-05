@@ -6,9 +6,10 @@ Examples to run the Foundation DB's Flow.  This example is based on the fdbcli a
 The build process is based on FoundationDB's build instrucution for both Linux and MacOS.
 
 * Copy the **helloflow** folder to **foundationdb** folder
-* Add **helloflow** the **foundationdb/Makefile** build target
+* Add **helloflow** the **foundationdb/Makefile** build target, add the following line (second line is added) to Makefile.
 
 ```makefile
+CPP_PROJECTS := flow fdbrpc fdbclient fdbbackup fdbserver fdbcli bindings/c bindings/java fdbmonitor bindings/flow/tester bindings/flow
 CPP_PROJECTS += helloflow
 ```
 * Under foundationdb folder, run **make targets**, *helloflow* should be listed one of the targets.
