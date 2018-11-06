@@ -16,4 +16,3 @@ CPP_PROJECTS += flowcli
 * Run **make flowcli TLS_DISABLED=true**:  *bin/flowcli* should be built and ready to run, **exit** to quit from the CLI.
 
 
-**Note**:  current version still depends on fdbclient's *fdbclient/NativeAPI.h*.

@@ -20,9 +20,9 @@
 
 # -*- mode: makefile; -*-
 
-flowcli_CFLAGS := $(fdbclient_CFLAGS)
-flowcli_LDFLAGS := $(fdbrpc_LDFLAGS)
-flowcli_LIBS := lib/libfdbclient.a lib/libfdbrpc.a lib/libflow.a -ldl $(FDB_TLS_LIB)
+flowcli_CFLAGS := $(flow_CFLAGS)
+flowcli_LDFLAGS := $(flow_LDFLAGS)
+flowcli_LIBS := lib/libflow.a -ldl $(FDB_TLS_LIB)
 flowcli_STATIC_LIBS := $(TLS_LIBS)
 
 flowcli_GENERATED_SOURCES += versions.h

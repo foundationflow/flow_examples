@@ -1,11 +1,8 @@
 #include "boost/lexical_cast.hpp"
 
-
 #include "flow/Trace.h"
 #include "flow/DeterministicRandom.h"
 #include "flow/SignalSafeUnwind.h"
-
-#include "fdbclient/NativeAPI.h"
 
 #include "flow/SimpleOpt.h"
 
@@ -442,17 +439,20 @@ int main(int argc, char **argv) {
 	setMemoryQuota( memLimit );
 
 	registerCrashHandler();
-
 	initHelp();
 
 	CLIOptions opt(argc, argv);
 
 	try {
-		setupNetwork();
+		g_random = new DeterministicRandom( platform::getRandomSeed() );
+		g_nondeterministic_random = new DeterministicRandom(platform::getRandomSeed());
+		g_network = newNet2(NetworkAddress(), false);
+
 		Future<int> cliFuture = runCli(opt);
 		Future<Void> timeoutFuture = opt.exit_timeout ? timeExit(opt.exit_timeout) : Never();
 		auto f = stopNetworkAfter( success(cliFuture) || timeoutFuture );
-		runNetwork();
+
+		g_network->run();
 
 		if(cliFuture.isReady()) {
 			return cliFuture.get();

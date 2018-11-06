@@ -32,6 +32,8 @@ int main(int argc, char **argv) {
 
 	try {
 		g_random = new DeterministicRandom( platform::getRandomSeed() );
+		g_nondeterministic_random = new DeterministicRandom(platform::getRandomSeed());
+
 		g_network = newNet2(NetworkAddress(), false);
 
 		Promise<int> pTest;
@@ -39,9 +41,10 @@ int main(int argc, char **argv) {
 		pTest.send( 4 );
 		printf( "%d\n", fTest.get() ); // fTest is already set
 
-		g_network->stop();
+		g_network->run();
 
 		if(fTest.isReady()) {
+			g_network->stop();
 			return fTest.get();
 		}
 		else {
