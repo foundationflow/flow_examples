@@ -403,7 +403,7 @@ ACTOR Future<int> runCli(CLIOptions opt) {
 
 	state std::string historyFilename;
 	try {
-		historyFilename = joinPath(getUserHomeDirectory(), ".fdbcli_history");
+		historyFilename = joinPath(getUserHomeDirectory(), ".flowcli_history");
 		linenoise.historyLoad(historyFilename);
 	}
 	catch(Error &e) {

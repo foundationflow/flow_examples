@@ -16,3 +16,12 @@ CPP_PROJECTS += flowcli
 * Run **make flowcli TLS_DISABLED=true**:  *bin/flowcli* should be built and ready to run, **exit** to quit from the CLI.
 
 
+The key is how to associate the Promise with the Future.  Start a new Future (server thread) whenever there is a new Promise (client).  There is a middle coordinator to help exchanging the promise and future object.  Thus, the sequence is first having coordinator, then promise, then future.  In this example, the objects are:
+
+* Coordinator: LineNoise
+* Promise: LineNoiseReader
+* Future: Cli
+
+![Actor Flow Chart](actor_flow.png "Actor Flow Chart")
+source file for the image at [actor_flowchart.uml](actor_flowchart.uml) 
+

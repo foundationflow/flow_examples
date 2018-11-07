@@ -1,0 +1,20 @@
+The key is how to associate the Promise with the Future.
+Start a new Future (server thread) whenever there is a new Promise (client).  
+Thus, the sequence is first having promise, then future.  There is a middle coordinator to help exchanging 
+the promise and future object.
+
+@startuml
+	participant runCli
+	participant Cli	
+	participant LineNoise
+		
+	runCli -> LineNoise: New
+	LineNoise -> LineNoiseReader: New	
+	LineNoiseReader --> LineNoise: Promise
+	runCli --> Cli: Start(LineNoise)
+	LineNoise --> Cli: Line Future(receiver)
+	Cli -> LineNoise: wait(LineNoise:Read)
+	LineNoiseReader -> LineNoiseObj:  Read 
+	LineNoiseObj --> LineNoiseReader: Rawline
+	LineNoiseReader --> Cli: Promise:Send(Rawline) 
+@enduml
